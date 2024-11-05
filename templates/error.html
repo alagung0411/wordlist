@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Not Found</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Word Not Found</h1>
+        <p>We couldn't find the word <strong>{{ word }}</strong> in our dictionary.</p>
+
+        {% if suggestions %}
+            <p>Did you mean one of these?</p>
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li><a href="{{ url_for('detail', keyword=suggestion) }}">{{ suggestion }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No suggestions available. Please try a different word.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('main') }}" class="btn btn-sparta">Go Back to Main Page</a>
+    </div>
+</body>
+</html>
